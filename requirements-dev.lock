@@ -1,0 +1,3 @@
+# Exact development tooling; test suite uses the Python standard library.
+pip==25.0.1
+setuptools==84.0.0

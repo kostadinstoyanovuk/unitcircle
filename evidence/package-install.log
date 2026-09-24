@@ -1,0 +1,14 @@
+Processing <workspace>
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: unitcircle
+  Building wheel for unitcircle (pyproject.toml): started
+  Building wheel for unitcircle (pyproject.toml): finished with status 'done'
+  Created wheel for unitcircle: filename=unitcircle-0.0.1.dev0-py3-none-any.whl size=2787 sha256=c9283ebaa1ab302570fb5c33281dd1b35c8159a0937cda3e36e8c0f8a06f5721
+  Stored in directory: <temporary-directory>\pip-ephem-wheel-cache-2djpsisb\wheels\64\23\4d\b1c805b985c99b5ceb0932923433573c02a64f0e605d7c40e9
+Successfully built unitcircle
+Installing collected packages: unitcircle
+Successfully installed unitcircle-0.0.1.dev0
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: <workspace>\.venv\Scripts\python.exe -m pip install --upgrade pip

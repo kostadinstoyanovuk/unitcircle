@@ -1,0 +1,10 @@
+Requirement already satisfied: pip==25.0.1 in <workspace>\.venv\lib\site-packages (from -r <workspace>/requirements-dev.lock (line 2)) (25.0.1)
+Collecting setuptools==84.0.0 (from -r <workspace>/requirements-dev.lock (line 3))
+  Downloading setuptools-84.0.0-py3-none-any.whl.metadata (6.6 kB)
+Downloading setuptools-84.0.0-py3-none-any.whl (818 kB)
+   --------------------------------------- 818.2/818.2 kB 17.9 MB/s eta 0:00:00
+Installing collected packages: setuptools
+Successfully installed setuptools-84.0.0
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: <workspace>\.venv\Scripts\python.exe -m pip install --upgrade pip

@@ -1,0 +1,36 @@
+{
+  "record_type": "Selected upstream package metadata extract",
+  "metadata_url": "https://pypi.org/pypi/setuptools/84.0.0/json",
+  "retrieved_at_utc": "2026-09-24T15:13:03.4266460Z",
+  "original_response_sha256": "24d07932459261bbf9e66e5cfdebfeba23a977234ab24bf9c3a1df053c53ba21",
+  "note": "Selected fields from the retrieved PyPI response. This file is an extract, not the original response bytes.",
+  "name": "setuptools",
+  "version": "84.0.0",
+  "requires_python": ">=3.10",
+  "release_url": "https://pypi.org/project/setuptools/84.0.0/",
+  "source_url": "https://github.com/pypa/setuptools",
+  "artifacts": [
+    {
+      "filename": "setuptools-84.0.0-py3-none-any.whl",
+      "package_type": "bdist_wheel",
+      "url": "https://files.pythonhosted.org/packages/95/9c/c510029fc6ef33a6275cd2c5d3cecd6613dfd6aa401d57c54f1c18852ccf/setuptools-84.0.0-py3-none-any.whl",
+      "size_bytes": 818216,
+      "sha256": "51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670",
+      "uploaded_at_utc": "2026-08-08T18:27:56.719708Z",
+      "python_version": "py3",
+      "requires_python": ">=3.10",
+      "yanked": false
+    },
+    {
+      "filename": "setuptools-84.0.0.tar.gz",
+      "package_type": "sdist",
+      "url": "https://files.pythonhosted.org/packages/6d/44/f5da03a8ef95d369145c5bb53050e7877c9f3d312e128605fd9504829143/setuptools-84.0.0.tar.gz",
+      "size_bytes": 1168449,
+      "sha256": "f4695c21257f0d9b537ec2692c941d02ee143b7cc1276941349a546573b2ef73",
+      "uploaded_at_utc": "2026-08-08T18:27:58.365696Z",
+      "python_version": "source",
+      "requires_python": ">=3.10",
+      "yanked": false
+    }
+  ]
+}

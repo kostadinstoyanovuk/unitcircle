@@ -1,0 +1,8 @@
+test_complex_and_degenerate_cases (test_smoke.RootSmokeTest.test_complex_and_degenerate_cases) ... ok
+test_nonfinite_rejected (test_smoke.RootSmokeTest.test_nonfinite_rejected) ... ok
+test_required_companion_roots (test_smoke.RootSmokeTest.test_required_companion_roots) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
