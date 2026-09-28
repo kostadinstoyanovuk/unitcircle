@@ -1,0 +1,21 @@
+test_ols_matches_independent_intercept_inclusive_least_squares (test_ar_extraction.ARFitReferenceChecks.test_ols_matches_independent_intercept_inclusive_least_squares) ... ok
+test_yule_walker_matches_independent_toeplitz_solve (test_ar_extraction.ARFitReferenceChecks.test_yule_walker_matches_independent_toeplitz_solve) ... ok
+test_legacy_top_level_roots_entry_point_remains_available (test_ar_extraction.AnalyticDiagnosticChecks.test_legacy_top_level_roots_entry_point_remains_available) ... ok
+test_roots_modulus_period_and_half_life_on_known_coefficients (test_ar_extraction.AnalyticDiagnosticChecks.test_roots_modulus_period_and_half_life_on_known_coefficients) ... ok
+test_signed_zero_real_root_order_matches_legacy_entry_point (test_ar_extraction.AnalyticDiagnosticChecks.test_signed_zero_real_root_order_matches_legacy_entry_point) ... ok
+test_stability_boundaries_and_spectrum_peak_classification (test_ar_extraction.AnalyticDiagnosticChecks.test_stability_boundaries_and_spectrum_peak_classification) ... ok
+test_fit_copies_residual_index_and_returns_fresh_residual_series (test_ar_extraction.InputAndIndexChecks.test_fit_copies_residual_index_and_returns_fresh_residual_series) ... ok
+test_nonfinite_observations_are_rejected (test_ar_extraction.InputAndIndexChecks.test_nonfinite_observations_are_rejected) ... ok
+test_only_ar2_order_is_supported_and_p_is_validated (test_ar_extraction.InputAndIndexChecks.test_only_ar2_order_is_supported_and_p_is_validated) ... ok
+test_rank_deficient_ols_is_rejected (test_ar_extraction.InputAndIndexChecks.test_rank_deficient_ols_is_rejected) ... ok
+test_time_indexes_must_be_ordered_unique_and_consecutive (test_ar_extraction.InputAndIndexChecks.test_time_indexes_must_be_ordered_unique_and_consecutive) ... ok
+test_prefix_and_future_perturbations_do_not_change_past_modulus (test_ar_extraction.RollingCausalityChecks.test_prefix_and_future_perturbations_do_not_change_past_modulus) ... ok
+test_short_input_is_all_warmup_and_singular_fit_reports_endpoint (test_ar_extraction.RollingCausalityChecks.test_short_input_is_all_warmup_and_singular_fit_reports_endpoint) ... ok
+test_complex_and_degenerate_cases (test_smoke.RootSmokeTest.test_complex_and_degenerate_cases) ... ok
+test_nonfinite_rejected (test_smoke.RootSmokeTest.test_nonfinite_rejected) ... ok
+test_required_companion_roots (test_smoke.RootSmokeTest.test_required_companion_roots) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.046s
+
+OK

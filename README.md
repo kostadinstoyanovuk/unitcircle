@@ -1,38 +1,43 @@
 # unitcircle
 
-Python package development for the Unit Circle Programme, which studies
-autoregressive roots and time-series stability.
+Development package for autoregressive roots and time-series stability.
 
-The current version, `0.0.1.dev0`, provides a small, installable foundation. Its
-only public function is `roots(phi1, phi2)`, returning the roots of
-`z^2 - phi1*z - phi2`. For example, `roots(0.3, 0.1)` returns `(0.5, -0.2)` to
-floating-point precision. The function's docstring specifies root ordering and
-numerical limits.
+Version `0.0.2.dev0` adds `unitcircle.ar` (AR(2) OLS, Yule-Walker and root
+diagnostics) and `unitcircle.rolling.max_modulus`. The existing top-level
+`unitcircle.roots(phi1, phi2)` remains compatible. Only AR order two is supported.
 
-## Install and verify
+## Installation and checks
 
-The recorded environment uses Python 3.12.14. From the repository directory:
+Use Python 3.12.14 in an isolated environment, install `requirements-dev.lock`,
+then install this package with `pip install --no-build-isolation .`.
+Run `python -m unittest discover -s tests -v`.
 
-```powershell
-python -m venv .venv
-.venv/Scripts/python.exe -m pip install -r requirements-dev.lock
-.venv/Scripts/python.exe -m pip install --no-build-isolation .
-.venv/Scripts/python.exe -m unittest discover -s tests -v
+The first extraction checkpoint has 16 passing installed-package tests.
+It matches the preserved research reference exactly on 14 fit comparisons and
+seven rolling paths; see [extraction evidence](evidence/AR_EXTRACTION.md).
+These are bounded transfer checks, not a completed scientific release.
+
+## Example
+
+```python
+from unitcircle.ar import fit_ols, roots
+from unitcircle.rolling import max_modulus
+
+x = [1.2, -0.7, 0.4, 1.1, -1.3, 0.2, 0.9, -0.4, 1.5, -0.8, 0.3]
+fit = fit_ols(x)
+print(fit.coefficients)
+print(fit.residual_series)  # labels start at the third observation
+print(roots((0.3, 0.1)))
+print(max_modulus(x, window=6))  # first five observations are warm-up
 ```
 
-The [package workflow](https://github.com/kostadinstoyanovuk/unitcircle/actions/workflows/ci.yml)
-repeats installation and the three smoke tests on pinned Python 3.12.14.
-[Recorded verification](evidence/README.md) includes the local installation,
-interpreter version, dependency versions and successful test output.
+Residual numerical values remain tuples; residual_index and residual_series
+return copies. Period and half-life are measured in sampling intervals. Roots
+use the companion convention; undefined diagnostics remain None. Rolling
+calculations use trailing windows and reject failed fits rather than skip them.
 
-## Development scope
-
-This is a development package, not a validated research release or version 1.0.
-The real-root calculation uses the companion-polynomial convention and a
-cancellation-resistant product calculation. The broader research implementation
-has not yet been extracted into this package. A scientific release requires
-extraction and cross-validation of the frozen research implementation at M6.
-
-The research methods and programme records are maintained in
-[unit-circle](https://github.com/kostadinstoyanovuk/unit-circle).
-Project licensing remains undecided.
+[Design](docs/design.md) describes the broader candidate API. Its later methods
+are not implemented or exported by this checkpoint. The present errors retain
+the reference ValueError classes rather than introduce the proposed future
+exception taxonomy. No `core-v1` comparison or M6 completion is claimed.
+Project licensing remains undecided pending the release decision.

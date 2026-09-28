@@ -1,0 +1,466 @@
+{
+  "status": "design candidate; tests named, not executed",
+  "research_commit": "6f9400ea4aba29c3b515f6ab13659efcff572a3f",
+  "function_count": 21,
+  "contracts": [
+    {
+      "qualified_name": "unitcircle.ar.fit_ols",
+      "signature": "def fit_ols(x: Any, p: int = 2) -> ARFit",
+      "docstring": "Fit intercept-inclusive least squares using only within-sample lags; retain unstable estimates and indexed residuals.",
+      "input_checks": "finite 1D; n>=2*p+1; identifiable lags; p=2 initially",
+      "returns": "ARFit",
+      "raises": [
+        "ValueError",
+        "EstimationError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-1",
+        "AT-3",
+        "AT-4"
+      ],
+      "planned_tests": [
+        "test_ols_frozen_reference",
+        "test_ols_rank_failure",
+        "test_ols_series_residual_index"
+      ],
+      "reference": "uc_core/ar.py:fit_ols",
+      "implementation_state": "core-v1 reproduction pending"
+    },
+    {
+      "qualified_name": "unitcircle.ar.fit_yw",
+      "signature": "def fit_yw(x: Any, p: int = 2) -> ARFit",
+      "docstring": "Fit demeaned Yule-Walker using one full-sample energy denominator for every lag.",
+      "input_checks": "finite nonconstant 1D; n>=2*p+1; nonsingular system; p=2 initially",
+      "returns": "ARFit",
+      "raises": [
+        "ValueError",
+        "EstimationError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-2"
+      ],
+      "planned_tests": [
+        "test_yw_common_denominator",
+        "test_yw_frozen_reference"
+      ],
+      "reference": "uc_core/ar.py:fit_yw",
+      "implementation_state": "core-v1 reproduction pending"
+    },
+    {
+      "qualified_name": "unitcircle.ar.roots",
+      "signature": "def roots(phi: Any) -> tuple[complex, ...]",
+      "docstring": "Return companion-polynomial roots with the existing AR(2) ordering and cancellation-resistant real calculation.",
+      "input_checks": "finite 1D coefficients; length=2 initially; no arithmetic overflow",
+      "returns": "tuple[complex, ...]",
+      "raises": [
+        "ValueError",
+        "NumericalError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-1",
+        "AT-6"
+      ],
+      "planned_tests": [
+        "test_roots_analytic",
+        "test_roots_polynomial_residual",
+        "test_legacy_two_argument_wrapper"
+      ],
+      "reference": "uc_core/ar.py:root_summary; unitcircle/roots.py",
+      "implementation_state": "general order deferred"
+    },
+    {
+      "qualified_name": "unitcircle.ar.modulus",
+      "signature": "def modulus(phi: Any) -> float",
+      "docstring": "Return the largest companion-root modulus without clipping at the unit circle.",
+      "input_checks": "same coefficient checks as roots",
+      "returns": "float",
+      "raises": [
+        "ValueError",
+        "NumericalError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-6",
+        "AT-12"
+      ],
+      "planned_tests": [
+        "test_modulus_complex_identity",
+        "test_modulus_companion"
+      ],
+      "reference": "uc_core/ar.py:root_summary",
+      "implementation_state": "extraction pending"
+    },
+    {
+      "qualified_name": "unitcircle.ar.period",
+      "signature": "def period(phi: Any) -> float | None",
+      "docstring": "Return the AR(2) complex-pair period in sampling intervals, or None for real roots.",
+      "input_checks": "finite AR(2) coefficients; period does not imply stability",
+      "returns": "float | None",
+      "raises": [
+        "ValueError",
+        "NumericalError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-1",
+        "AT-2",
+        "AT-3"
+      ],
+      "planned_tests": [
+        "test_period_sunspot_reference",
+        "test_period_real_and_repeated_roots"
+      ],
+      "reference": "uc_core/ar.py:root_summary",
+      "implementation_state": "extraction pending"
+    },
+    {
+      "qualified_name": "unitcircle.ar.half_life",
+      "signature": "def half_life(phi: Any) -> float | None",
+      "docstring": "Return the modulus-envelope decay half-life; zero at zero modulus and None at or beyond one.",
+      "input_checks": "finite AR(2) coefficients; no negative decay times",
+      "returns": "float | None",
+      "raises": [
+        "ValueError",
+        "NumericalError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-1"
+      ],
+      "planned_tests": [
+        "test_half_life_zero_unit_explosive"
+      ],
+      "reference": "uc_core/ar.py:root_summary",
+      "implementation_state": "extraction pending"
+    },
+    {
+      "qualified_name": "unitcircle.ar.in_triangle",
+      "signature": "def in_triangle(phi1: float, phi2: float) -> bool",
+      "docstring": "Classify the strict open AR(2) stability triangle, without tolerance-based projection.",
+      "input_checks": "two finite real scalars",
+      "returns": "bool",
+      "raises": [
+        "ValueError"
+      ],
+      "acceptance": [
+        "AT-7"
+      ],
+      "planned_tests": [
+        "test_triangle_root_agreement",
+        "test_triangle_equalities"
+      ],
+      "reference": "uc_core/ar.py:in_triangle",
+      "implementation_state": "extraction pending"
+    },
+    {
+      "qualified_name": "unitcircle.ar.spectral_peak",
+      "signature": "def spectral_peak(phi1: float, phi2: float) -> PeakResult | None",
+      "docstring": "Return the interior spectral-peak diagnostic for a stable AR(2), or None outside stability.",
+      "input_checks": "two finite real scalars; strict stability for a defined diagnostic",
+      "returns": "PeakResult | None",
+      "raises": [
+        "ValueError",
+        "NumericalError"
+      ],
+      "acceptance": [
+        "AT-10"
+      ],
+      "planned_tests": [
+        "test_peak_numerical_grid",
+        "test_complex_without_peak",
+        "test_peak_unstable_undefined"
+      ],
+      "reference": "uc_core/ar.py:root_summary",
+      "implementation_state": "extraction pending"
+    },
+    {
+      "qualified_name": "unitcircle.rolling.max_modulus",
+      "signature": "def max_modulus(x: Any, window: int, p: int = 2) -> Series",
+      "docstring": "Return causal within-window root moduli with the full original index and a declared warm-up prefix.",
+      "input_checks": "finite 1D; ordered unique index; consecutive PeriodIndex; window>=5; p=2 initially",
+      "returns": "Series",
+      "raises": [
+        "ValueError",
+        "RollingFitError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-1",
+        "AT-6",
+        "AT-7",
+        "causal contract"
+      ],
+      "planned_tests": [
+        "test_rolling_prefix_invariance",
+        "test_rolling_future_perturbation",
+        "test_rolling_failed_endpoint"
+      ],
+      "reference": "uc_core/rolling.py:max_modulus",
+      "implementation_state": "core-v1 reproduction pending"
+    },
+    {
+      "qualified_name": "unitcircle.recession.episodes",
+      "signature": "def episodes(g: Any, rule: str = 'two_negative', merge: int = 8) -> EpisodeSet",
+      "docstring": "Return retrospective strictly-negative runs merged from the preceding qualifying run's end, retaining the first onset.",
+      "input_checks": "finite 1D; valid ordered index; only two_negative rule; nonnegative integer merge",
+      "returns": "EpisodeSet",
+      "raises": [
+        "ValueError"
+      ],
+      "acceptance": [
+        "registered episode convention"
+      ],
+      "planned_tests": [
+        "test_episode_zero_break",
+        "test_episode_chain_merge",
+        "test_isolated_negative_no_clock_reset"
+      ],
+      "reference": "uc_core/recession.py:episodes",
+      "implementation_state": "extraction pending"
+    },
+    {
+      "qualified_name": "unitcircle.surrogate.ar_surrogates",
+      "signature": "def ar_surrogates(x: Any, B: int, rng: Generator, p: int = 2, *, innovation: str = 'residual') -> SurrogateBatch",
+      "docstring": "Attempt B fitted-null paths with explicit random state, fixed initial observations and recorded failures.",
+      "input_checks": "finite identifiable stable AR(2) null; positive integer B; Generator; supported innovation",
+      "returns": "SurrogateBatch",
+      "raises": [
+        "ValueError",
+        "NullModelError",
+        "NotImplementedOrderError"
+      ],
+      "acceptance": [
+        "AT-13",
+        "RNG extraction contract"
+      ],
+      "planned_tests": [
+        "test_surrogates_rng_state",
+        "test_surrogates_initial_pair",
+        "test_surrogates_no_replacement_draw"
+      ],
+      "reference": "uc_core/surrogate.py:prepare_null,draw_surrogate",
+      "implementation_state": "wrapper design; extraction pending"
+    },
+    {
+      "qualified_name": "unitcircle.surrogate.var_surrogates",
+      "signature": "def var_surrogates(X: Any, B: int, rng: Generator, p: int = 1) -> SurrogateBatch",
+      "docstring": "Generate vector-residual surrogates only after the E2 model and random-stream contract are frozen.",
+      "input_checks": "finite aligned 2D data; positive B/p; Generator; frozen E2 specification",
+      "returns": "SurrogateBatch",
+      "raises": [
+        "ValueError",
+        "NullModelError",
+        "PendingMethodError"
+      ],
+      "acceptance": [
+        "AT-12",
+        "frozen E2 outputs"
+      ],
+      "planned_tests": [
+        "test_var_whole_residual_vectors",
+        "test_var_frozen_e2_reference"
+      ],
+      "reference": "pending E2",
+      "implementation_state": "unavailable until E2 design"
+    },
+    {
+      "qualified_name": "unitcircle.test.csd_test",
+      "signature": "def csd_test(g: Any, window: int, lookback: int, B: int, rng: Generator, onsets: str = 'endogenous', *, merge: int = 8, innovation: str = 'residual') -> CSDResult",
+      "docstring": "Return observed pre-onset changes and a tie-inclusive plus-one fitted-null comparison with every attempt accounted for.",
+      "input_checks": "rolling and episode contracts; positive lookback/B; Generator; endogenous/fixed modes; registered retained-sample rules",
+      "returns": "CSDResult",
+      "raises": [
+        "ValueError",
+        "NullModelError",
+        "RollingFitError"
+      ],
+      "acceptance": [
+        "AT-14",
+        "AT-15",
+        "AT-16"
+      ],
+      "planned_tests": [
+        "test_csd_plus_one_ties",
+        "test_csd_no_episode_denominator",
+        "test_csd_failures_invalidate_p",
+        "test_csd_frozen_h1_reference"
+      ],
+      "reference": "uc_core/surrogate.py:csd_test",
+      "implementation_state": "G2/H1 freeze required for scientific acceptance"
+    },
+    {
+      "qualified_name": "unitcircle.statespace.kalman_filter",
+      "signature": "def kalman_filter(y: Any, Z: Any, T: Any, Q: Any, H: float, a1: Any, P1: Any, *, burn: int = 0) -> FilterResult",
+      "docstring": "Apply the reference square-root filter and prediction-error likelihood with explicit finite initial covariance.",
+      "input_checks": "finite compatible dimensions; H>0; symmetric PSD Q/P1; matching labels; 0<=burn<n",
+      "returns": "FilterResult",
+      "raises": [
+        "ValueError",
+        "NumericalError"
+      ],
+      "acceptance": [
+        "AT-11"
+      ],
+      "planned_tests": [
+        "test_filter_diffuse_ols",
+        "test_filter_scalar_analytic",
+        "test_filter_shapes_covariances"
+      ],
+      "reference": "uc_core/statespace.py:kalman_filter",
+      "implementation_state": "wrapper validation additions require tests"
+    },
+    {
+      "qualified_name": "unitcircle.statespace.tvp_ar_mle",
+      "signature": "def tvp_ar_mle(x: Any, p: int = 2, *, specification: Any) -> TVPFit",
+      "docstring": "Fit the frozen E3 time-varying model and retain convergence, initialisation and filtering diagnostics.",
+      "input_checks": "finite series; supported order; complete frozen E3 specification",
+      "returns": "TVPFit",
+      "raises": [
+        "ValueError",
+        "EstimationError",
+        "PendingMethodError"
+      ],
+      "acceptance": [
+        "AT-11",
+        "frozen E3 outputs"
+      ],
+      "planned_tests": [
+        "test_tvp_frozen_e3_reference",
+        "test_tvp_nonconvergence_visible"
+      ],
+      "reference": "pending E3",
+      "implementation_state": "unavailable until E3 design"
+    },
+    {
+      "qualified_name": "unitcircle.cycle.complex_root_test",
+      "signature": "def complex_root_test(x: Any, *, selection: Any, alpha: float = 0.05, rng: Generator | None = None) -> CycleTestResult",
+      "docstring": "Apply only the C3.TEST-selected complex-root test, identified by its frozen calibration record.",
+      "input_checks": "finite series; 0<alpha<1; valid selection; Generator for a stochastic selected method",
+      "returns": "CycleTestResult",
+      "raises": [
+        "ValueError",
+        "PendingMethodError"
+      ],
+      "acceptance": [
+        "AT-9",
+        "AT-17",
+        "AT-18",
+        "C3.TEST DR-3"
+      ],
+      "planned_tests": [
+        "test_complex_test_selection_required",
+        "test_complex_test_reduced_calibration"
+      ],
+      "reference": "pending C3.TEST",
+      "implementation_state": "unavailable until test selection"
+    },
+    {
+      "qualified_name": "unitcircle.cycle.spectral_peak_test",
+      "signature": "def spectral_peak_test(x: Any, *, selection: Any, alpha: float = 0.05, rng: Generator | None = None) -> CycleTestResult",
+      "docstring": "Apply only the separately selected interior-peak test, respecting its kink and calibration domain.",
+      "input_checks": "finite series; 0<alpha<1; valid selection; Generator where required",
+      "returns": "CycleTestResult",
+      "raises": [
+        "ValueError",
+        "PendingMethodError"
+      ],
+      "acceptance": [
+        "AT-10",
+        "C3.TEST DR-3"
+      ],
+      "planned_tests": [
+        "test_spectral_test_selection_required",
+        "test_spectral_test_kink_policy"
+      ],
+      "reference": "pending C3.TEST",
+      "implementation_state": "unavailable until test selection"
+    },
+    {
+      "qualified_name": "unitcircle.schur.schur_cohn_stable",
+      "signature": "def schur_cohn_stable(coeffs: Any) -> bool",
+      "docstring": "Test strict disc stability of ascending finite complex coefficients, without claiming an exact certificate.",
+      "input_checks": "nonempty 1D coefficients; nonzero leading coefficient; finite intermediate arithmetic",
+      "returns": "bool",
+      "raises": [
+        "ValueError",
+        "NumericalError"
+      ],
+      "acceptance": [
+        "AT-8"
+      ],
+      "planned_tests": [
+        "test_schur_constant_zero_boundary",
+        "test_schur_random_root_agreement",
+        "test_schur_overflow_visible"
+      ],
+      "reference": "uc_core/schur.py:schur_cohn_stable",
+      "implementation_state": "floating implementation; exact certificate separate"
+    },
+    {
+      "qualified_name": "unitcircle.plot.triangle",
+      "signature": "def triangle(*, ax: Any = None) -> PlotResult",
+      "docstring": "Draw the AR(2) stability triangle and labelled boundary, returning figure and axes without automatic file output.",
+      "input_checks": "None or a supported Matplotlib Axes",
+      "returns": "PlotResult",
+      "raises": [
+        "ValueError",
+        "TypeError"
+      ],
+      "acceptance": [
+        "plot contract",
+        "geometry from AT-7"
+      ],
+      "planned_tests": [
+        "test_triangle_plot_coordinates",
+        "test_plot_no_implicit_save"
+      ],
+      "reference": "tools/plot_s1.py as figure reference",
+      "implementation_state": "new presentation wrapper"
+    },
+    {
+      "qualified_name": "unitcircle.plot.argand",
+      "signature": "def argand(roots: Any, *, ax: Any = None) -> PlotResult",
+      "docstring": "Plot supplied roots with the unit circle and equal aspect, retaining plotted-data provenance.",
+      "input_checks": "finite 1D complex roots; None or supported Axes",
+      "returns": "PlotResult",
+      "raises": [
+        "ValueError",
+        "TypeError"
+      ],
+      "acceptance": [
+        "plot contract"
+      ],
+      "planned_tests": [
+        "test_argand_coordinates_equal_aspect",
+        "test_plot_input_unchanged"
+      ],
+      "reference": "tools/plot_s1.py as figure reference",
+      "implementation_state": "new presentation wrapper"
+    },
+    {
+      "qualified_name": "unitcircle.plot.root_path",
+      "signature": "def root_path(path: Any, *, ax: Any = None) -> PlotResult",
+      "docstring": "Display chronological root sets; do not connect across undefined gaps or imply unprovided root identities.",
+      "input_checks": "validated indexed root sets; declared warm-up; tracking identities for connected curves",
+      "returns": "PlotResult",
+      "raises": [
+        "ValueError",
+        "TypeError"
+      ],
+      "acceptance": [
+        "plot contract",
+        "causal index convention"
+      ],
+      "planned_tests": [
+        "test_root_path_gaps",
+        "test_root_path_identity_required"
+      ],
+      "reference": "no existing public wrapper",
+      "implementation_state": "tracking rule unresolved for connected general paths"
+    }
+  ]
+}
+

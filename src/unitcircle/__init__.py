@@ -3,4 +3,4 @@
 from .roots import roots
 
 __all__ = ["roots"]
-__version__ = "0.0.1.dev0"
+__version__ = "0.0.2.dev0"

@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "unitcircle"
-version = "0.0.1.dev0"
+version = "0.0.2.dev0"
 description = "Development scaffold for the Unit Circle Programme"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["numpy==2.5.3", "pandas==3.0.6"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

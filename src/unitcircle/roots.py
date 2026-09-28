@@ -7,7 +7,8 @@ def roots(phi1: float, phi2: float) -> tuple[complex, complex]:
     """Return roots of z**2 - phi1*z - phi2 for finite real coefficients.
 
     A conjugate pair has the positive imaginary part first. Real roots put
-    the root with greater absolute value first (positive first on a tie).
+    the root with greater absolute value first. On an equal-magnitude real
+    pair, the sign of phi1 selects the first root, including signed zero.
     These are companion roots, not reciprocals of lag-polynomial roots.
     Floating-point arithmetic is used; this is not a certified root checker.
     """

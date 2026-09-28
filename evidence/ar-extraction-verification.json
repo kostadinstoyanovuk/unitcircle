@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "scope": "bounded installed-package transfer verification",
+  "reference_commit": "6f9400ea4aba29c3b515f6ab13659efcff572a3f",
+  "package_version": "0.0.2.dev0",
+  "package_location": "C:\\Users\\user\\Desktop\\Unit Circle Programme\\Programme Records\\Coordination\\workspaces\\library-ar-foundation\\.venv\\Lib\\site-packages\\unitcircle\\__init__.py",
+  "numpy_version": "2.5.3",
+  "pandas_version": "3.0.6",
+  "preserved_source_sha256": {
+    "ar.py": "19ea466d4829de08a18a6d1efd1ba10aebcf55cc3e7efc556f87001ed352a936",
+    "rolling.py": "e335a4dcf3d159294ac5e84a99b27f46a21b347c400cdfbcae236f7f3843d5ee"
+  },
+  "input_data_sha256": {
+    "data/raw/yearssn.dat": "cf7ecc7311300280216b6eb80f7dddfd1f0a0279a37593e4be93d7e064d0aaf6",
+    "data/raw/SN_y_tot_V2.0.csv": "0ccb2104b03f2f0c4ad151c97f8721139414cae288a039cdeb37ee36c9e35b6d"
+  },
+  "data_attribution": "WDC-SILSO, Royal Observatory of Belgium; existing manifest CC BY-NC 4.0",
+  "fit_comparisons": [
+    {
+      "fixture": "artificial",
+      "method": "fit_ols",
+      "equality": "exact"
+    },
+    {
+      "fixture": "artificial",
+      "method": "fit_yw",
+      "equality": "exact"
+    },
+    {
+      "fixture": "artificial_affine",
+      "method": "fit_ols",
+      "equality": "exact"
+    },
+    {
+      "fixture": "artificial_affine",
+      "method": "fit_yw",
+      "equality": "exact"
+    },
+    {
+      "fixture": "artificial_short",
+      "method": "fit_ols",
+      "equality": "exact"
+    },
+    {
+      "fixture": "artificial_short",
+      "method": "fit_yw",
+      "equality": "exact"
+    },
+    {
+      "fixture": "yearssn.dat:1749-1924",
+      "method": "fit_ols",
+      "equality": "exact"
+    },
+    {
+      "fixture": "yearssn.dat:1749-1924",
+      "method": "fit_yw",
+      "equality": "exact"
+    },
+    {
+      "fixture": "yearssn.dat:1925-2008",
+      "method": "fit_ols",
+      "equality": "exact"
+    },
+    {
+      "fixture": "yearssn.dat:1925-2008",
+      "method": "fit_yw",
+      "equality": "exact"
+    },
+    {
+      "fixture": "SN_y_tot_V2.0.csv:1749-1924",
+      "method": "fit_ols",
+      "equality": "exact"
+    },
+    {
+      "fixture": "SN_y_tot_V2.0.csv:1749-1924",
+      "method": "fit_yw",
+      "equality": "exact"
+    },
+    {
+      "fixture": "SN_y_tot_V2.0.csv:1925-2008",
+      "method": "fit_ols",
+      "equality": "exact"
+    },
+    {
+      "fixture": "SN_y_tot_V2.0.csv:1925-2008",
+      "method": "fit_yw",
+      "equality": "exact"
+    }
+  ],
+  "rolling_comparisons": 7,
+  "core_v1_comparison": "pending: core-v1 does not yet exist",
+  "registered_experiments_executed": false,
+  "uk_data_accessed": false,
+  "release_accepted": false
+}
